@@ -28,7 +28,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Kategori</h5>
                                 <p class="card-text">
-                                    <div class="card-body">
+                                    <a href="<?= base_url('administrator/kategori/tambah') ?>" class="btn btn-primary mb-3">
+                                        <i class="fa fa-plus"></i> Tambah Kategori
+                                    </a>
+                                        <div class="card-body">
                                         <?php if ($this->session->flashdata('message')) : ?>
                                             <?= $this->session->flashdata('message') ?>
                                         <?php endif ?>

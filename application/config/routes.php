@@ -59,4 +59,5 @@ $route['admin/logout'] = 'administrator/admin_auth_controller/logout';
 
 
 # admin kategori
-$route['admin/kategori'] = 'administrator/kategori_controller/index';
+$route['administrator/kategori'] = 'administrator/kategori_controller/index';
+$route['administrator/kategori/tambah'] = 'administrator/kategori_controller/tambah_kategori';
