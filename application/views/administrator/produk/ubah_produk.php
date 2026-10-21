@@ -9,8 +9,9 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Starter Page</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('administrator') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('administrator/produk') ?>">Produk</a></li>
+                        <li class="breadcrumb-item active">Ubah Produk</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -25,20 +26,22 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">
+                            <div class="card-text">
                                 <form method="post" enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="nama_produk" class="form-label">Nama produk</label>
-                                        <input type="text" class="form-control" name="nama_produk" id="nama_produk" aria-describedby="nama_produk" value="<?= $produk['nama'] ?>">
+                                        <input type="text" class="form-control" name="nama_produk" id="nama_produk" value="<?= html_escape($produk['nama']) ?>">
                                         <small class="text-danger"><em><?= form_error('nama_produk') ?></em></small>
                                     </div>
                                     <div class="mb-3">
                                         <label for="kategori_produk" class="form-label">Kategori produk</label>
                                         <select class="form-select" name="kategori_produk" id="kategori_produk">
-                                            <option value="" selected>-- Pilih kategori --</option>
+                                            <option value="">-- Pilih kategori --</option>
 
                                             <?php foreach ($list_kategori as $kategori) : ?>
-                                                <option <?= ($produk['kategori_id'] == $kategori['id_kategori']) ? " selected" : '' ?> value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama'] ?></option>
+                                                <option value="<?= $kategori['id_kategori'] ?>" <?= ($produk['categori_id'] == $kategori['id_kategori']) ? 'selected' : '' ?>>
+                                                    <?= html_escape($kategori['nama']) ?>
+                                                </option>
                                             <?php endforeach ?>
                                         </select>
                                         <small class="text-danger"><em><?= form_error('kategori_produk') ?></em></small>
@@ -47,12 +50,12 @@
                                         <label for="harga_produk" class="form-label">Harga</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1">Rp</span>
-                                            <input type="number" name="harga_produk" id="harga_produk" class="form-control" value="<?= $produk['harga'] ?>">
+                                            <input type="number" name="harga_produk" id="harga_produk" class="form-control" value="<?= html_escape($produk['harga']) ?>">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="stok_produk" class="form-label">Stok produk</label>
-                                        <input type="text" class="form-control" name="stok_produk" id="stok_produk" aria-describedby="stok_produk" value="<?= $produk['stok'] ?>">
+                                        <input type="text" class="form-control" name="stok_produk" id="stok_produk" value="<?= html_escape($produk['stok']) ?>">
                                         <small class="text-danger"><em><?= form_error('stok_produk') ?></em></small>
                                     </div>
                                     <div class="mb-3">
@@ -60,8 +63,8 @@
                                         <input class="form-control" type="file" id="gambar_produk" name="gambar_produk[]" multiple>
                                     </div>
                                     <?php
-                                    // get gambar dengan id produk
-                                    $list_gambar = $gambar_model->get_by_produk($produk['id_produk']);
+                                    // ambil gambar berdasarkan id produk
+                                    $list_gambar = $gambar_model->get_by_produk_id($produk['id_produk']);
                                     ?>
                                     <div class="row mb-3">
                                         <?php foreach ($list_gambar as $gambar) : ?>
@@ -78,16 +81,16 @@
 
                                     <div class="mb-3">
                                         <label for="deskripsi_produk" class="form-label">Deskripsi</label>
-                                        <textarea name="deskripsi_produk" id="deskripsi_produk" cols="30" rows="10" class="form-control"><?= $produk['deskripsi'] ?></textarea>
+                                        <textarea name="deskripsi_produk" id="deskripsi_produk" cols="30" rows="10" class="form-control"><?= html_escape($produk['deskripsi']) ?></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Ubah</button>
-                                    <a href="<?= base_url('administrator/produk') ?>" class="btn btn-danger">Kembali</a>
+                                    <a href="<?= base_url('administrator/produk') ?>" class="btn btn-secondary">Kembali</a>
                                 </form>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.col-md-6 -->
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

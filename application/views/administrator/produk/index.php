@@ -9,8 +9,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Starter Page</li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('administrator') ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Produk</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -25,7 +25,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">
+                            <div class="card-text">
                                 <i class="fas fa-table me-1"></i>
                                 Semua Produk
                                 <a href="<?= base_url('administrator/produk/tambah') ?>" class="btn btn-labeled btn-primary">
@@ -54,21 +54,21 @@
                                         foreach ($list_produk as $produk) : ?>
                                             <tr>
                                                 <th scope="row"><?= $no ?></th>
-                                                <td><?= $produk['pd_nama'] ?></td>
-                                                <td><?= $produk['kt_nama'] ?></td>
-                                                <td>Rp. <?= number_format($produk['harga']) ?></td>
-                                                <td><?= $produk['stok'] ?></td>
-                                                <td><?= $produk['deskripsi'] ?></td>
+                                                <td><?= html_escape($produk['pd_nama']) ?></td>
+                                                <td><?= html_escape($produk['kt_nama']) ?></td>
+                                                <td>Rp. <?= number_format($produk['harga'], 0, ',', '.') ?></td>
+                                                <td><?= html_escape($produk['stok']) ?></td>
+                                                <td><?= html_escape($produk['deskripsi']) ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('administrator/produk/ubah/') ?><?= $produk['id_produk'] ?>"><span class="badge bg-success">Ubah</span></a>
-                                                    <a href="<?= base_url('administrator/produk/hapus/') ?><?= $produk['id_produk'] ?>"><span class="badge bg-danger">Hapus</span></a>
+                                                    <a href="<?= base_url('administrator/produk/ubah/' . $produk['id_produk']) ?>"><span class="badge bg-success">Ubah</span></a>
+                                                    <a href="<?= base_url('administrator/produk/hapus/' . $produk['id_produk']) ?>" onclick="return confirm('Yakin ingin menghapus produk ini beserta gambarnya?')"><span class="badge bg-danger">Hapus</span></a>
                                                 </td>
                                             </tr>
                                             <?php $no++; ?>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
-                            </p>
+                            </div>
                         </div><!-- /.card-body -->
                     </div><!-- /.card -->
                 </div><!-- /.col-lg-12 -->
