@@ -24,9 +24,7 @@ class Produk_controller extends CI_Controller
         $this->load->view('administrator/templates/footer');
     }
 
-
-
-public function tambah_produk()
+    public function tambah_produk()
     {
         $data['title'] = 'Tambah Produk';
         $this->form_validation->set_rules('nama_produk', 'Nama produk', 'required');
@@ -38,6 +36,22 @@ public function tambah_produk()
             $this->load->view('administrator/templates/header', $data);
             $this->load->view('administrator/templates/sidebar');
             $this->load->view('administrator/produk/tambah_produk', $data);
+            $this->load->view('administrator/templates/footer');
+        }
+    }
+
+    public function ubah_produk()
+    {
+        $data['title'] = 'Ubah Produk';
+        $this->form_validation->set_rules('nama_produk', 'Nama produk', 'required');
+        $this->form_validation->set_rules('kategori_produk', 'Kategori', 'required');
+        if ($this->form_validation->run() !== FALSE) {
+            $this->__simpan_produk();
+        } else {
+            $data['list_kategori'] = $this->produk_kategori_model->get_all();
+            $this->load->view('administrator/templates/header', $data);
+            $this->load->view('administrator/templates/sidebar');
+            $this->load->view('administrator/produk/ubah_produk', $data);
             $this->load->view('administrator/templates/footer');
         }
     }
@@ -73,7 +87,7 @@ public function tambah_produk()
             </div>
             ');
 
-        redirect('admin/produk');
+        redirect('administrator/produk');
     }
 
     private function __produk_gambar_upload($count, $id_produk)
