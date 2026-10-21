@@ -39,7 +39,7 @@
                                             <option value="">-- Pilih kategori --</option>
 
                                             <?php foreach ($list_kategori as $kategori) : ?>
-                                                <option value="<?= $kategori['id_kategori'] ?>" <?= ($produk['categori_id'] == $kategori['id_kategori']) ? 'selected' : '' ?>>
+                                                <option value="<?= $kategori['id_kategori'] ?>" <?= ($produk['id_kategori'] == $kategori['id_kategori']) ? 'selected' : '' ?>>
                                                     <?= html_escape($kategori['nama']) ?>
                                                 </option>
                                             <?php endforeach ?>
@@ -60,19 +60,25 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="gambar_produk" class="form-label">Gambar Produk</label>
-                                        <input class="form-control" type="file" id="gambar_produk" name="gambar_produk[]" multiple>
+                                        <input class="form-control" type="file" id="gambar_produk" name="gambar_produk[]" accept="image/*" multiple>
+                                        <small class="text-muted">Pilih gambar baru lalu klik tombol Ubah untuk mengganti gambar lama.</small>
                                     </div>
                                     <?php
                                     // ambil gambar berdasarkan id produk
                                     $list_gambar = $gambar_model->get_by_produk_id($produk['id_produk']);
                                     ?>
-                                    <div class="row mb-3">
+                                    <div class="row mb-3 align-items-start">
                                         <?php foreach ($list_gambar as $gambar) : ?>
-                                            <div class="col-lg-3">
-                                                <div class="card" style="width: 18rem;">
-                                                    <img src="<?= base_url('uploads/produk/') . $gambar['nama_gambar'] ?>" class="card-img-top">
+                                            <div class="col-6 col-md-3 mb-3">
+                                                <div class="card shadow-sm">
+                                                    <img src="<?= base_url('uploads/produk/') . $gambar['nama_gambar'] ?>"
+                                                        class="card-img-top"
+                                                        style="width: 100%; height: auto;"
+                                                        alt="Gambar produk">
                                                     <div class="card-body d-grid">
-                                                        <a href="#" class="btn btn-danger">Hapus</a>
+                                                        <a href="<?= base_url('administrator/produk/hapus_gambar/' . $gambar['id_gambar'] . '/' . $produk['id_produk']) ?>"
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Hapus gambar ini?')">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
