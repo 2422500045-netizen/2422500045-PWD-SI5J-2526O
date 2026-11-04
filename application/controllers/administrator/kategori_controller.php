@@ -203,7 +203,7 @@ class kategori_controller extends CI_Controller {
             ');
         }
 
-        redirect('administrator/kategori');
+        redirect('administrator/ekspedisi2422500045');
     }
 
 }

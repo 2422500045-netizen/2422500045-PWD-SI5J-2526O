@@ -44,3 +44,9 @@ $route['administrator/produk'] = 'administrator/Produk_controller/index';
 $route['administrator/produk/tambah'] = 'administrator/Produk_controller/tambah_produk';
 $route['administrator/produk/ubah/(:num)'] = 'administrator/Produk_controller/ubah_produk/$1';
 $route['administrator/produk/hapus/(:num)'] = 'administrator/Produk_controller/hapus_produk/$1';
+
+#Ekspedisi
+$route['administrator/ekspedisi2422500045'] = 'administrator/Ekspedisi2422500045_controller/index';
+$route['administrator/ekspedisi2422500045/tambah'] = 'administrator/Ekspedisi2422500045_controller/tambah_ekspedisi2422500045';
+$route['administrator/ekspedisi2422500045/hapus/(:num)'] = 'administrator/Ekspedisi2422500045_controller/hapus_ekspedisi2422500045/$1';
+$route['administrator/ekspedisi2422500045/ubah/(:num)'] = 'administrator/Ekspedisi2422500045_controller/ubah_ekspedisi2422500045/$1';
