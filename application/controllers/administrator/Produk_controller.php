@@ -69,7 +69,7 @@ class Produk_controller extends CI_Controller
     {
         return [
             'nama' => ucwords($this->input->post('nama_produk')),
-            'id_kategori' => $this->input->post('kategori_produk'), // sesuai nama kolom di database
+            'id_kategori' => $this->input->post('kategori_produk'),
             'harga' => $this->input->post('harga_produk'),
             'stok' => $this->input->post('stok_produk'),
             'deskripsi' => ucfirst($this->input->post('deskripsi_produk'))
@@ -143,19 +143,6 @@ class Produk_controller extends CI_Controller
         }
     }
 
-    // Hapus satu gambar dari halaman ubah produk
-    public function hapus_gambar($id_gambar, $id_produk)
-    {
-        $gambar = $this->produk_gambar_model->get_by_id($id_gambar);
-        if ($gambar) {
-            $this->__hapus_gambar([$gambar]);
-            $this->__flash_sukses('Gambar berhasil dihapus!!');
-        } else {
-            $this->__flash_gagal('Gambar tidak ditemukan!!');
-        }
-        redirect('administrator/produk/ubah/' . $id_produk);
-    }
-
     public function hapus_produk($id)
     {
         // cek apakah produk ada
@@ -171,6 +158,26 @@ class Produk_controller extends CI_Controller
             $this->__flash_gagal('Produk tidak ditemukan!!');
         }
         redirect('administrator/produk');
+    }
+
+    public function hapus_gambar($id_gambar, $id_produk)
+    {
+        // cari gambar di dalam daftar gambar milik produk ini
+        $list_gambar = $this->produk_gambar_model->get_by_produk_id($id_produk);
+        $ditemukan = [];
+        foreach ($list_gambar as $gambar) {
+            if ($gambar['id_gambar'] == $id_gambar) {
+                $ditemukan[] = $gambar;
+            }
+        }
+
+        if (!empty($ditemukan)) {
+            $this->__hapus_gambar($ditemukan);
+            $this->__flash_sukses('Berhasil menghapus gambar!!');
+        } else {
+            $this->__flash_gagal('Gambar tidak ditemukan!!');
+        }
+        redirect('administrator/produk/ubah/' . $id_produk);
     }
 
     private function __flash_gagal($pesan)
