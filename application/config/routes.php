@@ -65,3 +65,7 @@ $route['administrator/ekspedisi2422500045'] = 'administrator/Ekspedisi2422500045
 $route['administrator/ekspedisi2422500045/tambah'] = 'administrator/Ekspedisi2422500045_controller/tambah_ekspedisi2422500045';
 $route['administrator/ekspedisi2422500045/hapus/(:num)'] = 'administrator/Ekspedisi2422500045_controller/hapus_ekspedisi2422500045/$1';
 $route['administrator/ekspedisi2422500045/ubah/(:num)'] = 'administrator/Ekspedisi2422500045_controller/ubah_ekspedisi2422500045/$1';
+
+#ecom
+$route['produk'] = 'produk_controller/detail';
+$route['produk/(:num)'] = 'produk_controller/detail/$1';
