@@ -147,4 +147,53 @@ class Pelanggan_controller extends CI_Controller
         $this->session->unset_userdata($session_data);
         redirect(base_url());
     }
+
+    public function profil()
+    {
+        if (!$this->session->has_userdata('pelanggan_login')) {
+            redirect('login');
+        }
+        $id = $this->session->userdata('id');
+
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
+        $this->form_validation->set_rules('nopon', 'No Telpon', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('kota', 'Kota', 'required');
+        $this->form_validation->set_rules('kodepos', 'Kode POS', 'required');
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
+
+        if ($this->form_validation->run() !== FALSE) {
+            $this->__ubah_profil($id);
+        } else {
+            $data['pelanggan'] = $this->pelanggan_model->get_by_id($id);
+            $this->load->view('ecom/template/header');
+            $this->load->view('ecom/pelanggan_profil', $data);
+            $this->load->view('ecom/template/footer');
+        }
+    }
+
+    private function __ubah_profil($id)
+    {
+        $data = [
+            'nama_pelanggan' => ucwords($this->input->post('nama')),
+            'telp_pelanggan' => $this->input->post('nopon'),
+            'alamat'         => ucwords($this->input->post('alamat')),
+            'kota'           => ucwords($this->input->post('kota')),
+            'kode_pos'       => $this->input->post('kodepos'),
+            'provinsi'       => ucwords($this->input->post('provinsi'))
+        ];
+        // password hanya diganti jika diisi
+        if ($this->input->post('password')) {
+            $data['password'] = md5($this->input->post('password'));
+        }
+
+        if ($this->pelanggan_model->ubah($data, $id)) {
+            $this->session->set_userdata('nama', $data['nama_pelanggan']);
+            $pesan = '<div class="alert alert-success">Profil berhasil diperbarui!</div>';
+        } else {
+            $pesan = '<div class="alert alert-warning">Tidak ada data yang berubah.</div>';
+        }
+        $this->session->set_flashdata('message', $pesan);
+        redirect('profil');
+    }
 }

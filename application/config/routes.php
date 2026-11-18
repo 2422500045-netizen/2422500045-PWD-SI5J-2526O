@@ -56,3 +56,12 @@ $route['administrator/pelajar/hapus/(:any)'] = 'administrator/Pelajar_controller
 $route['login'] = 'pelanggan_controller/login';
 $route['register'] = 'pelanggan_controller/register';
 $route['logout'] = 'pelanggan_controller/logout';
+
+#profil
+$route['profil'] = 'pelanggan_controller/profil';
+
+#Ekspedisi
+$route['administrator/ekspedisi2422500045'] = 'administrator/Ekspedisi2422500045_controller/index';
+$route['administrator/ekspedisi2422500045/tambah'] = 'administrator/Ekspedisi2422500045_controller/tambah_ekspedisi2422500045';
+$route['administrator/ekspedisi2422500045/hapus/(:num)'] = 'administrator/Ekspedisi2422500045_controller/hapus_ekspedisi2422500045/$1';
+$route['administrator/ekspedisi2422500045/ubah/(:num)'] = 'administrator/Ekspedisi2422500045_controller/ubah_ekspedisi2422500045/$1';
