@@ -52,7 +52,3 @@ $route['administrator/ekspedisi2422500045/hapus/(:num)'] = 'administrator/Eksped
 $route['administrator/ekspedisi2422500045/ubah/(:num)'] = 'administrator/Ekspedisi2422500045_controller/ubah_ekspedisi2422500045/$1';
 
 
-#pelanggan
-$route['login'] = 'pelanggan_controller/login';
-$route['register'] = 'pelanggan_controller/register';
-$route['logout'] = 'pelanggan_controller/logout';

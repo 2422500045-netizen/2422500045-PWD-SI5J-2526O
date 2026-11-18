@@ -32,7 +32,7 @@ class ekspedisi2422500045_model extends CI_Model
 
     {
 
-        $this->db->where('id_ekspedisi045 ', $id);
+        $this->db->where('id_ekspedisi045', $id);
 
         $query = $this->db->get($this->_table);
 

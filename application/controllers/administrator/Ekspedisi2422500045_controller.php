@@ -16,7 +16,7 @@ class Ekspedisi2422500045_controller extends CI_Controller {
 
         $this->load->view('administrator/templates/header');
         $this->load->view('administrator/templates/sidebar');
-        $this->load->view('administrator/ekspedisi2422500045', $data);
+        $this->load->view('administrator/ekspedisi2422500045/index', $data);
         $this->load->view('administrator/templates/footer');
     }
 
@@ -24,7 +24,10 @@ class Ekspedisi2422500045_controller extends CI_Controller {
     {
         $data['title'] = 'Tambah Ekspedisi';
 
-        $this->form_validation->set_rules('nama_ekspedisi045', 'Nama Ekspedisi', 'required');
+        $this->form_validation->set_rules('nama_ekspedisi045', 'Nama Ekspedisi', 'required|max_length[11]');
+        $this->form_validation->set_rules('jenis_layanan045', 'Jenis Layanan', 'required');
+        $this->form_validation->set_rules('tarif_per_kg045', 'Tarif per Kg', 'required|numeric');
+        $this->form_validation->set_rules('status045', 'Status', 'required');
 
         if ($this->form_validation->run() !== FALSE) {
             $this->__simpan_ekspedisi2422500045();
@@ -130,7 +133,10 @@ class Ekspedisi2422500045_controller extends CI_Controller {
         $ekspedisi2422500045 = $this->ekspedisi2422500045_model->get_by_id($id);
 
         if ($ekspedisi2422500045) {
-            $this->form_validation->set_rules('nama_ekspedisi045', 'Nama Ekspedisi', 'required');
+            $this->form_validation->set_rules('nama_ekspedisi045', 'Nama Ekspedisi', 'required|max_length[11]');
+        $this->form_validation->set_rules('jenis_layanan045', 'Jenis Layanan', 'required');
+        $this->form_validation->set_rules('tarif_per_kg045', 'Tarif per Kg', 'required|numeric');
+        $this->form_validation->set_rules('status045', 'Status', 'required');
 
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'Ubah Ekspedisi';
