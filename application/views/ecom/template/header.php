@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-        <title>Dashboard - Title</title>
+    <title>Dashboard - Title</title>
     <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
     <link href="<?= base_url() ?>assets/css/styles.css" rel="stylesheet" />
     <script src="<?= base_url() ?>assets/plugins/fontawesome/js/all.js" crossorigin="anonymous"></script>
@@ -44,11 +44,18 @@
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 </form>
 
+                <?php if ($this->session->has_userdata('pelanggan_login')) : ?>
                     <div class="text-end">
-                        <a href="" class="btn btn-outline-light me-2 ">Login</a>
-                        <a href="" class="btn btn-warning">Register</a>
+                        <a href="<?= base_url('keranjang') ?>" class="btn btn-outline-light me-2 ">Kerajang</a>
+                        <a href="<?= base_url('logout') ?>" class="btn btn-danger">Logout</a>
                     </div>
-                
+                <?php else : ?>
+                    <div class="text-end">
+                        <a href="<?= base_url('login') ?>" class="btn btn-outline-light me-2 ">Login</a>
+                        <a href="<?= base_url('register') ?>" class="btn btn-warning">Register</a>
+                    </div>
+                <?php endif ?>
+
             </div>
         </div>
     </nav>
