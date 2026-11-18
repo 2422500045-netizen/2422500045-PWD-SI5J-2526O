@@ -45,10 +45,14 @@ $route['administrator/produk/tambah'] = 'administrator/Produk_controller/tambah_
 $route['administrator/produk/ubah/(:num)'] = 'administrator/Produk_controller/ubah_produk/$1';
 $route['administrator/produk/hapus/(:num)'] = 'administrator/Produk_controller/hapus_produk/$1';
 
-#Ekspedisi
-$route['administrator/ekspedisi2422500045'] = 'administrator/Ekspedisi2422500045_controller/index';
-$route['administrator/ekspedisi2422500045/tambah'] = 'administrator/Ekspedisi2422500045_controller/tambah_ekspedisi2422500045';
-$route['administrator/ekspedisi2422500045/hapus/(:num)'] = 'administrator/Ekspedisi2422500045_controller/hapus_ekspedisi2422500045/$1';
-$route['administrator/ekspedisi2422500045/ubah/(:num)'] = 'administrator/Ekspedisi2422500045_controller/ubah_ekspedisi2422500045/$1';
+# Pelajar
+$route['administrator/pelajar'] = 'administrator/Pelajar_controller/index';
+$route['administrator/pelajar/tambah'] = 'administrator/Pelajar_controller/tambah_pelajar';
+$route['administrator/pelajar/ubah/(:any)'] = 'administrator/Pelajar_controller/ubah_pelajar/$1';
+$route['administrator/pelajar/hapus/(:any)'] = 'administrator/Pelajar_controller/hapus_pelajar/$1';
 
 
+#pelanggan
+$route['login'] = 'pelanggan_controller/login';
+$route['register'] = 'pelanggan_controller/register';
+$route['logout'] = 'pelanggan_controller/logout';
